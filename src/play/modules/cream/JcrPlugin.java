@@ -41,7 +41,7 @@ public class JcrPlugin extends PlayPlugin {
     @Override
     public void beforeInvocation() {
         InvocationContext current = InvocationContext.current();
-        if (!current.isAnnotationPresent(JcrNoSession.class)) {
+        if (current.isAnnotationPresent(JcrSession.class)) {
             Session currentSession = createCurrentSession(current);
             JCR.addSession(currentSession);
         }
